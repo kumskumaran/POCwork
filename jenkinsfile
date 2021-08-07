@@ -4,7 +4,7 @@ pipeline {
     
          environment {
               PROJECT_ID = 'certain-cursor-317020'
-              LOCATION = 'us-central1-a'
+              LOCATION = 'us-central1-c'
               CREDENTIALS_ID = 'poc'
               CLUSTER_NAME = 'gke-to-be'   
           }
