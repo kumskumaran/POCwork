@@ -14,7 +14,7 @@ pipeline {
             steps{
                echo "Kubernetes Deployment Started..."
                sh 'pwd'
-               sh "sed -i 'weaveworksdemos/front-end:0.3.12' complete-demo.yaml"
+               sh "sed -i '/weaveworksdemos/front-end:0.3.12' complete-demo.yaml"
                echo " Applying deployment changes to Kubernetes cluster"
                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
                echo "Kubernetes Deployment completed...."
