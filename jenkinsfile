@@ -1,17 +1,20 @@
 pipeline {
+
     agent any
-    environment {
-        PROJECT_ID = 'certain-cursor-317020'
-        LOCATION = 'us-central1-a'
-        CREDENTIALS_ID = 'poc'
-        CLUSTER_NAME = 'gke_as-is'   
-     }
+    
+         environment {
+              PROJECT_ID = 'certain-cursor-317020'
+              LOCATION = 'us-central1-a'
+              CREDENTIALS_ID = 'poc'
+              CLUSTER_NAME = 'gke-to-be'   
+          }
+         
     stages {
-       stage('Deploy to GKE test cluster') {
-         steps{
-           sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
-           step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-              }
+         stage('Deploy to GKE test cluster') {
+            steps{
+               sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
+               step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+            }
          }
-      }
-   } 
+     }
+  } 
