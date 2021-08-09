@@ -13,7 +13,7 @@ pipeline {
     stages {
          stage('Deploy to GKE test cluster') {
             steps {
-              container('kubectl') {
+ 
                 // Create namespace if it doesn't exist
                 sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
                echo "Kubernetes Deployment Started..."
@@ -22,7 +22,7 @@ pipeline {
                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
                echo "Kubernetes Deployment completed...."
                  }
-            }
+            
         }    
       }
     }
