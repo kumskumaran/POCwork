@@ -11,13 +11,11 @@ pipeline {
           }
          
     stages {
-        steps {
-          container('kubectl') {
-            // Create namespace if it doesn't exist
-            sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
-
          stage('Deploy to GKE test cluster') {
-            steps{
+            steps {
+              container('kubectl') {
+                // Create namespace if it doesn't exist
+                sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
                echo "Kubernetes Deployment Started..."
                sh 'pwd'
                echo " Applying deployment changes to Kubernetes cluster"
@@ -28,6 +26,6 @@ pipeline {
         }    
       }
     }
-  }
+    
   
   
