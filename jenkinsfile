@@ -11,10 +11,6 @@ pipeline {
           }
          
     stages {
-       when {
-          not { branch 'master' }
-          not { branch 'canary' }
-       }
         steps {
           container('kubectl') {
             // Create namespace if it doesn't exist
@@ -33,4 +29,5 @@ pipeline {
       }
     }
   }
+  
   
