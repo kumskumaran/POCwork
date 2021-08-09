@@ -7,9 +7,19 @@ pipeline {
               LOCATION = 'us-central1-c'
               CREDENTIALS_ID = 'poc'
               CLUSTER_NAME = 'gke-to-be'   
+              APP_NAME= 'sockshop'
           }
          
     stages {
+       when {
+          not { branch 'master' }
+          not { branch 'canary' }
+       }
+        steps {
+          container('kubectl') {
+            // Create namespace if it doesn't exist
+            sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
+
          stage('Deploy to GKE test cluster') {
             steps{
                echo "Kubernetes Deployment Started..."
@@ -17,7 +27,10 @@ pipeline {
                echo " Applying deployment changes to Kubernetes cluster"
                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
                echo "Kubernetes Deployment completed...."
+                 }
             }
-         }
-     }
-  } 
+        }    
+      }
+    }
+  }
+  
