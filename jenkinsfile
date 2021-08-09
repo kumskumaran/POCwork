@@ -13,7 +13,7 @@ pipeline {
     stages {
          stage('Deploy to GKE test cluster') {
             steps {
-                  sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
+                 sudo sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
                // Create namespace if it doesn't exist
                echo "Kubernetes Deployment Started..."
                sh 'pwd'
