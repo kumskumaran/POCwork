@@ -14,6 +14,7 @@ pipeline {
          stage('Deploy to GKE test cluster') {
             steps {
                sh 'pwd'
+               sh 'sudo chmod +x /usr/local/bin/kubectl'
                sh "kubectl version"
                sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
                // Create namespace if it doesn't exist
