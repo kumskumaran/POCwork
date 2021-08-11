@@ -887,4 +887,16 @@ spec:
     targetPort: 27017
   selector:
     name: user-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-end
+spec:
+  selector:
+    App:front-end-lb
+  ports:
+    - port: 80
+      targetPort: 8079
+  type: LoadBalancer
 
