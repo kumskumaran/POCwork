@@ -7,14 +7,13 @@ pipeline {
               LOCATION = 'us-central1-c'
               CREDENTIALS_ID = 'jencdppl'
               CLUSTER_NAME = 'gke-to-be'   
-              APP_NAME= 'sockshop'
+              APP_NAME= 'sock-shop'
           }
          
     stages {
          stage('Deploy to GKE test cluster') {
             steps {
                sh 'pwd'
-               sh "kubectl version"
                sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
                // Create namespace if it doesn't exist
                echo "Kubernetes Deployment Started..."
