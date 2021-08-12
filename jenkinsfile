@@ -4,7 +4,7 @@ pipeline {
     
          environment {
               PROJECT_ID = 'certain-cursor-317020'
-              LOCATION = 'us-central1-c'
+              LOCATION = 'us-central1-a'
               CREDENTIALS_ID = 'jencdppl'
               CLUSTER_NAME = 'gkecluster-to-be'   
               APP_NAME= 'sock-shop'
