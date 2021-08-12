@@ -19,6 +19,7 @@ pipeline {
                echo " Applying deployment changes to Kubernetes cluster"
                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
                echo "Kubernetes Deployment completed...."
+               sh "kubectl expose -f service.yaml"
                }
             
         }    
