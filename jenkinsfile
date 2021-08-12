@@ -17,8 +17,10 @@ pipeline {
                sh "kubectl version"
                sh("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
                echo " Applying deployment changes to Kubernetes cluster"
-               step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+               step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
                echo "Kubernetes Deployment completed...."
+               sh "kubectl expose service front-end --name=front-end-lb --port=80 --target-port=8079 --type=LoadBalancer --namespace=sock-shop
+kubectl get services --namespace=sock-shop"
                }
             
         }    
