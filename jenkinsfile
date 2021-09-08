@@ -15,15 +15,13 @@ pipeline {
             steps {
                sh 'pwd'
                sh "kubectl version"
-               sh 'cd deploy/kubernetes/'
-               sh 'pwd'
-               sh ("kubectl create -f ss-namespace.yaml || kubectl apply -f ss-namespace.yaml")
+               sh ("kubectl create -f deploy/kubernetes/ss-namespace.yaml || kubectl apply -f deploy/kubernetes/ss-namespace.yaml")
                echo " Applying deployment changes to Kubernetes cluster"
                sh 'pwd'
                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
                echo "Kubernetes Deployment completed...."
                sh 'pwd'
-               sh ("kubectl create -f service.yaml || kubectl apply -f service.yaml")
+               sh ("kubectl create -f deploy/kubernetes/service.yaml || kubectl apply -f deploy/kubernetes/service.yaml")
               
                
                  
