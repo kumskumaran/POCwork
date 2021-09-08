@@ -15,7 +15,7 @@ pipeline {
             steps {
                sh 'pwd'
                sh "kubectl version"
-               sh "cd deploy/kubernetes/"
+               sh 'cd deploy/kubernetes/'
                sh 'pwd'
                sh ("kubectl create -f ss-namespace.yaml || kubectl apply -f ss-namespace.yaml")
                echo " Applying deployment changes to Kubernetes cluster"
