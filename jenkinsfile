@@ -15,11 +15,11 @@ pipeline {
             steps {
                sh 'pwd'
                sh "kubectl version"
-               sh ("kubectl get ns ${env.APP_NAME} || kubectl create ns ${env.APP_NAME}")
+               sh ("kubectl create -f ss-namespace.yaml || kubectl apply -f ss-namespace.yaml")
                echo " Applying deployment changes to Kubernetes cluster"
                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
                echo "Kubernetes Deployment completed...."
-               sh ("kubectl expose service front-end --name=front-end-lb --port=80 --target-port=8079 --type=LoadBalancer --namespace=sock-shop")
+               sh ("kubectl create -f service.yaml || kubectl apply -f service.yaml")
               
                
                  
