@@ -6,7 +6,7 @@ pipeline {
               PROJECT_ID = 'certain-cursor-317020'
               LOCATION = 'us-central1-a'
               CREDENTIALS_ID = 'pipeline'
-              CLUSTER_NAME = 'gke-to-be-two'   
+              CLUSTER_NAME = 'gke-to-be-three'   
               APP_NAME= 'sock-shop'
           }
          
