@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: front-end-lb
   labels:
-   app: front-end
+   name: front-end
   namespace: sock-shop
 spec:
   selector: 
-    app: front-end
+    name: front-end
   ports:
     - port: 80
       targetPort: 8079
