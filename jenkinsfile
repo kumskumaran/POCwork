@@ -18,7 +18,7 @@ pipeline {
                sh ("kubectl apply -f deploy/kubernetes/ss-namespace.yaml || kubectl create -f deploy/kubernetes/ss-namespace.yaml")
                echo " Applying deployment changes to Kubernetes cluster"
                sh 'pwd'
-               step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+               step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploy/kubernetes/complete-demo.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
                echo "Kubernetes Deployment completed...."
                sh ("kubectl apply -f deploy/kubernetes/service.yaml")
            
