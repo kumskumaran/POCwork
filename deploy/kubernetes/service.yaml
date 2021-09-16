@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: front-end-lb
   labels:
-  name: front-end-lb
+   app: front-end
   namespace: sock-shop
 spec:
   selector: 
