@@ -6,7 +6,7 @@ pipeline {
               PROJECT_ID = 'certain-cursor-317020'
               LOCATION = 'us-central1-a'
               CREDENTIALS_ID = 'pipeline'
-              CLUSTER_NAME = 'kumsgke'   
+              CLUSTER_NAME = 'tcsgke'   
               APP_NAME= 'sock-shop'
           }
          
@@ -14,7 +14,6 @@ pipeline {
          stage('Deploy to GKE test cluster') {
             steps {
                sh 'pwd'
-               sh "kubectl version"
                sh ("kubectl apply -f deploy/kubernetes/ss-namespace.yaml || kubectl create -f deploy/kubernetes/ss-namespace.yaml")
                echo " Applying deployment changes to Kubernetes cluster"
                sh 'pwd'
