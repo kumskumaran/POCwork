@@ -14,6 +14,7 @@ pipeline {
          stage('Deploy to GKE test cluster') {
             steps {
                sh 'pwd'
+               sh 'whoami'
                sh 'kubectl config view'
                sh 'kubectl version'
                sh ("kubectl apply -f deploy/kubernetes/ss-namespace.yaml || kubectl create -f deploy/kubernetes/ss-namespace.yaml")
