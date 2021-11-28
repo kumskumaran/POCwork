@@ -4,8 +4,8 @@ pipeline {
     
          environment {
               PROJECT_ID = 'certain-cursor-317020'
-              LOCATION = 'us-central1-a'
-              CREDENTIALS_ID = 'certain-cursor-317020'
+              LOCATION = 'us-central1-b'
+              CREDENTIALS_ID = 'oldcdppl'
               CLUSTER_NAME = 'gketwokums'   
               APP_NAME= 'sock-shop'
           }
